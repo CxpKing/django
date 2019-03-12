@@ -1,0 +1,26 @@
+echo -e "\033[31m update start... \033[0m"
+django=`pwd`
+cd ../pyweb
+pyweb=`pwd`
+echo -e "\033[35m now in "$pyweb" \033[0m"
+git reset --hard
+git clean -xdf
+git pull
+cd ../script_study
+script_study=`pwd`
+echo -e "\033[35m now in "$script_study" \033[0m"
+git reset --hard
+git clean -xdf
+git pull
+cd ../spiderman
+spiderman=`pwd`
+echo -e "\033[35m now in "$spiderman" \033[0m"
+git reset --hard
+git clean -xdf
+git pull
+cd "$django"
+echo -e "\033[35m now in "$django" \033[0m"
+git reset --hard
+git clean -xdf
+git pull
+echo -e "\033[32m update succeed! \033[0m"
