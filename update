@@ -20,7 +20,7 @@ git clean -xdf
 git pull
 cd ../c
 c=`pwd`
-echo -e "\033[35m now in "$spiderman" \033[0m"
+echo -e "\033[35m now in "$c" \033[0m"
 git reset --hard
 git clean -xdf
 git pull
