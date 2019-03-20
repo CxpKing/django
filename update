@@ -18,6 +18,12 @@ echo -e "\033[35m now in "$spiderman" \033[0m"
 git reset --hard
 git clean -xdf
 git pull
+cd ../c
+c=`pwd`
+echo -e "\033[35m now in "$spiderman" \033[0m"
+git reset --hard
+git clean -xdf
+git pull
 cd "$django"
 echo -e "\033[35m now in "$django" \033[0m"
 git reset --hard
