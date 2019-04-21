@@ -1,0 +1,83 @@
+一、创建基本的Django项目步骤：
+
+	1、创建django项目
+		django-admin startproject project-name
+
+	2、创建django运用
+		python manage.py startapp app-name
+
+	3、启动mysql服务（有些系统需要以管理员身份运行cmd才能运行）
+		net start mysql-server-name
+		(net start mysql57)
+
+	4、配置django数据库
+		settings.py
+			DATABASES = {
+		    	'default': {
+		        #'ENGINE': 'django.db.backends.sqlite3',
+		        'ENGINE': 'django.db.backends.mysql',
+		        'NAME': 'myweb',
+		        'USER':'root',
+		        'PASSWORD':'cxpjy',
+		        'HOST':'localhost',
+		        'PORT':'3306'
+		    }
+		}
+
+	5、基本环境搭建成功，启动django服务器
+		python manage.py runserver
+
+	6、浏览器访问
+		127.0.0.1:8000
+
+二、认识django三大组件	 MVT
+
+	1、MVT概念与MVC
+		传统的Web开发框架MVC(model-view-controller)，其传统思想：
+		M:数据处理，负责对数据的处理，包括对数据的增删改查等操作
+		V:界面显示，负责显示model层的数据
+		C:逻辑处理，
+		使用mvc，会增加代码量、相应地也会增加软件开发的成文，设计的难度也会增加,适合大型项目。
+		（1）视图跟控制器过于紧密的连接，（视图与控制器是相互分离，但却是联系紧密的部件，视图没有控制器的存在，其应用是很有限的，反之亦然，这样就妨碍了他们的独立重用。例如，不可能总是在jsp页面中直接访问模型，一般放在逻辑控制层进行处理，servlet）
+		（2）增加了系统结构和实现的复杂性
+		（3）部分高级界面工具或构造器不支持MVC
+		（4）视图对模型数据的访问效率低（依据模型操作接口的不同，视图可能需要多次调用才能获得足够的显示数据。对未变化数据的不必要的频繁访问，也将损害操作性能。【例如，页面的有一部分数据我并没有更新，但是提交到模型层照样会去获得返回显示 】）
+		（4）调试应用程序带来了一定的困难。每个构件在使用之前都需要经过彻底的测试。
+		     简单的小型项目，使用MVC设计反而会降低开发效率，层和层虽然相互分离，但是之间关联性太强，没有做到独立的重用
+
+		Django也是MVC框架。 但是，Django框架内部的URLconf作为控制器的角色，负责了接收用户请求和转发请求的工作，Django 里更关注的是模型（Model）、模板(Template)和视图（Views），故称之为 Django MVT 模式
+		处理过程： Django框架接收了用户请求和参数后，再通过正则表达式匹配URL，转发给对应视图进行处理。视图调用M处理数据，再调用T返回界面给浏览器；
+		M： Model, 模型 与MVC中的M相同，负责对数据的处理
+		V： View, 视图 与MVC中的C类似，负责处理用户请求，调用M和T，响应请求
+		T： Template, 模板 与MVC中的V类似，负责如何显示数据（产生html界面）
+
+
+	2、V
+		View,不是展现给用户看的，而是处理ur定l的路由控制器。
+		在如下文件路径下的urls.py是路由分派的总节点：
+		myweb
+	    │ 
+	    │  manage.py 	
+	    │  
+	    ├─homepage
+	    │  │  admin.py
+	    │  │  apps.py
+	    │  │  models.py
+	    │  │  tests.py
+	    │  │  urls.py 	//应用连接模板的路由控制器
+	    │  │  views.py 	//跳转模板的桥梁
+	    │  │  __init__.py
+	    │  │  
+	    │  └─migrations
+	    │          __init__.py
+	    │          
+	    └─myweb
+	        │  settings.py 	//配置文件
+	        │  urls.py 		//view路由控制器
+	        │  wsgi.py 		//WSGI服务器
+	        │  __init__.py 	
+    
+    3、M
+    	数据模型，写在model.py文件中，实际上就是数据结构：
+    	from django.db import models
+    	models的使用
