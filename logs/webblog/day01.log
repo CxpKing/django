@@ -1,0 +1,59 @@
+一、models包的使用（https://www.cnblogs.com/suraer/p/8515416.html）
+    1、数据models的创建
+        根据数据表结构，在models.py中创建数据表类：一个表实际上就对应了一个class
+        from django.db import models
+        导入models包，该包下的方法以及字段,如下定义了一个Student类,该类包含了几乎所有属性以及常用方法：
+
+        class Student(models.Model):
+
+            GENDER_CHOICES = (
+                ('male', "男"),
+                ('female', "女"),
+                ('secret', "保密")
+            )
+
+            name = models.CharField(max_length=40, blank=True, verbose_name="姓名")
+            gender = models.CharField(max_length=6, choices=GENDER_CHOICES, default="secret", verbose_name="性别")
+            age = models.IntegerField(default=0, verbose_name="年龄")
+            rank = models.PositiveIntegerField(default=1, verbose_name="排名", unique=True)
+            discount = models.DecimalField(max_digits=3, decimal_places=2, verbose_name="折扣", default=1.0)
+            school = models.ForeignKey(to=School, verbose_name="学校", on_delete=models.CASCADE)
+            message = models.OneToOneField(to=Message, verbose_name="信息", on_delete=models.CASCADE)
+            teacher = models.ManyToManyField(verbose_name="老师", to=Teacher, blank=True)
+            introduce = models.TextField(blank=True, verbose_name="介绍")
+            grade = models.FloatField(default=0.0, verbose_name="成绩")
+            url = models.URLField(verbose_name="个人主页", max_length=100)
+            email = models.EmailField(verbose_name="邮箱")
+            image = models.ImageField(upload_to='img/%Y/%m/%d/', verbose_name='上传图片', null=True)
+            file = models.FileField(upload_to="file/%Y/%m/%d/", verbose_name="上传文件", blank=True)
+            is_deleted = models.BooleanField(verbose_name="已删除", default=False, blank=True)
+            time_added = models.DateTimeField(verbose_name="添加时间", auto_now_add=True, blank=True)
+
+            def delete(self, using=None, keep_parents=False):
+                self.is_deleted = True
+                # some actions
+                self.save()
+
+            def save(self, force_insert=False, force_update=False, using=None,
+                     update_fields=None):
+                # some actions
+                self.name = self.name.capitalize()  # 首字母大写
+                return super().save(force_insert=force_insert, force_update=force_update, using=using,
+                                    update_fields=update_fields)
+
+            def __repr__(self):
+                return "UserProfile:{}".format(self.name)
+
+            def __str__(self):
+                return self.name
+
+            class Meta:
+                ordering = ['-time_added']
+                verbose_name = "用户信息"
+                verbose_name_plural = verbose_name
+                db_table = "student_info"
+                unique_together = ("name", "gender")
+      
+      CharField
+      字符串类型值得注意的是当该字段只能在是某些指定的值时，如gender，要使用choices参数来指向预先设定的值(男或者女)，
+      如果要在templates中展示说明使用{{ get_gender_display }}。
