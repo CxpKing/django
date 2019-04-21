@@ -1,0 +1,5 @@
+django=`pwd`
+echo -e "\033[35m now in "$django" \033[0m"
+git reset --hard
+git clean -xdf
+git pull
