@@ -19,5 +19,5 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/',include('blog.urls')), #路由分发到应用blog的路由urls.py管理器中
-    path('account/',include('blog.urls')), #路由分发到account的路由中
+    path('account/',include('account.urls')), #路由分发到account的路由中
 ]

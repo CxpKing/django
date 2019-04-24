@@ -24,6 +24,6 @@ def user_login(request):
 				return HttpResponse("Sorry.Your username or password is not right.")
 		else:
 			return HttpResponse("Invalid login")
-	if request.method == "GET"
-	login_form = LoginForm()
+	if request.method == "GET":
+		login_form = LoginForm()
 	return render(request,"account/login.html",{"form":login_form})
