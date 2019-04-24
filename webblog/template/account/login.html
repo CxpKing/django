@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="row text-center vertical-middle-sm">
+	<h1>Login</h1>
+	<p>Input your username and password</p>
+	<!--
+	{% csrf_token %} ：		使用POST的方法时，必须添加{% csrf_token %}标签，用于处理csrf安全机制
+	{{ form.as_p }}  ：		将表单的每个输入框包裹在一个<p>标签内 tags
+	{{ form.as_table }} ：	将表单渲染成一个表格元素，每个输入框作为一个<tr>标签
+	{{ form.as_ul }} 	:	将表单渲染成一个列表元素，每个输入框作为一个<li>标签
+	-->
+	<form action="form-horizontal" action="." method="post">
+		{% csrf_token %}  <!--post提交数据时必须要加-->
+		{{ form.as_p }}  <!--将表单的每个输入框包裹在一个<p>标签内 tags-->
+		<input type="submit" value="Login">
+	</form>
+</div>
+{% endblock %}
