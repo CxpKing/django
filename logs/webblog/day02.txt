@@ -1,0 +1,23 @@
+一、自定义模板位置
+	TEMPLATES = [
+	    {
+	        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+	        #'DIRS',[],
+	        'DIRS': [os.path.join('BASE_DIR'),'template'], #添加template的路径
+	        'APP_DIRS': False, #自定义模板位置后就不需要默认查找模板文件了
+	        'OPTIONS': {
+	            'context_processors': [
+	                'django.template.context_processors.debug',
+	                'django.template.context_processors.request',
+	                'django.contrib.auth.context_processors.auth',
+	                'django.contrib.messages.context_processors.messages',
+	            ],
+	        },
+	    },
+	]
+
+二、自定义静态文件处理，
+	找到STATIC_URL = '/static/' 在其下方添加如下代码：
+	STATICFILES_DIRS = (
+		os.path.join(BASE_DIR,"static"),	#这个逗号不能省略，因为STATICFILES_DIRS是一个元组。
+	)

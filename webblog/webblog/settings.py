@@ -57,7 +57,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         #'DIRS',[],
         'DIRS': [os.path.join('BASE_DIR'),'template'], #添加template的路径
-        'APP_DIRS': True,
+        'APP_DIRS': True, #自定义模板位置后就不需要默认查找模板文件了
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -126,3 +126,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,'static'), #这个逗号不能省略，因为STATICFILES_DIRS是一个元组。
+)
