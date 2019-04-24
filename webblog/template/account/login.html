@@ -12,7 +12,20 @@
 	-->
 	<form class="form-horizontal" action="." method="post">
 		{% csrf_token %}  <!--post提交数据时必须要加-->
-		{{ form.as_p }}  <!--将表单的每个输入框包裹在一个<p>标签内 tags-->
+		<!--{{ form.as_p }}-->  <!--将表单的每个输入框包裹在一个<p>标签内 tags-->
+		<div class="form-group">
+			<label for="{{form.username.id_for_label}}" class="col-md-5 control-lable" style="color:red">
+				<!--span标签加上class后表示图标-->
+				<span class="glyphicon glyphicon-user"></span>Username
+			</label>
+			<div class="col-mid-6 text-left">{{form.username}}</div>
+		</div>
+		<div class="form-group">
+			<label for="{{form.username.id_for_label}}" class="col-md-5 control-lable" style="color:blue">
+				<span class="glyphicon glyphicon-user"></span>Password
+			</label>
+			<div class="col-mid-6 text-left">{{form.password}}</div>
+		</div>
 		<input type="submit" value="Login">
 	</form>
 </div>
