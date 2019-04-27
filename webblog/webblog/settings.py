@@ -23,9 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'mg=6wfgm6a*m=*77kil&35+h3*6#0fppl^@!%fcr+%(xltlfu+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '*'
+]
 
 
 # Application definition
@@ -130,3 +132,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'), #这个逗号不能省略，因为STATICFILES_DIRS是一个元组。
 )
+
+LOGIN_REDIRECT_URL = '/blog/articles'
