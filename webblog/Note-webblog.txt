@@ -31,3 +31,17 @@
 
 	4、在url中注册
 		在account/urls.py增加代码
+
+4.
+	增加注册内容
+		Django的User数据模型中还有用户姓氏、名字等字段，如果要增加还可以在表单的内部类 fields 的值中继续增加，比如fields = ("first_name", "last_name")
+		但是，如果要增加一个User数据模型中没有的字段呢？下面我们就来实现。
+	1、 创建新的数据模型
+		/account/models.py 中增加 UserProfile
+	2、执行迁移命令
+		python manage.py make migrations
+		python manage.py migrate
+	3、修改注册的视图函数
+		修改./account/views.py 中的 user_register 方法
+	4、修改注册的模板
+		修改 ./templates/account/register.html
