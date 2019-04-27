@@ -6,3 +6,28 @@
 2.
 	使用django内置的退出登录
 	注意的是路由结尾需要写上斜杠如：path(r'loginout/',.....)
+
+3.
+	简单的注册
+	先实现一个简单的注册例子，不用创建数据库，利用原有的数据库，即django默认的用户数据模型User.
+	1、创建注册表单:在/account/forms.py增加代码
+
+		注意：
+		注册表单继承的是 forms.ModelForm ，区别于登录表单的 forms.Form
+		如果要将表单中的数据写入数据库表或修改某些记录的值，就让表单类继承 forms.ModelForm
+		如果提交表单之后，不会对数据库进行修改，则继承 forms.Form
+
+		password 和 password2，User数据模型中没有这两个字段，在这里我们新增这两个字段，如果原数据模型中有这两个字段，则可覆盖。这就是继承 forms.ModelForm 的原因。
+		fields = ("username", "email") 表示注册表单中使用了User数据模型中的 username 和 email 字段。
+		clean_ +属性名称 命名方式所创建的方法，会在调用表单实例对象的 is_valid()方法时被执行。
+
+	2、编写注册的视图函数
+		在/account/views.py新增register方法
+		user_form.is_valid() 会触发 forms 中的 clean_password2 函数
+		user_form.save(commit=False) 仅生成一个数据对象，不会保存到数据库表
+
+	3、编写注册的模板
+		创建templates/account/register.html
+
+	4、在url中注册
+		在account/urls.py增加代码

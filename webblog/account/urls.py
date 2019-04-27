@@ -8,4 +8,5 @@ urlpatterns = [
 	path(r'login/',auth_views.LoginView.as_view(template_name="account/login.html"),name='user_login'),
 	#系统内置的退出
 	path(r'loginout/',auth_views.LogoutView.as_view(template_name="account/logout.html"),name='user_logout'),
+	path(r'register/',views.user_register,name='user_register'),
 ]
