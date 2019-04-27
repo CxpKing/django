@@ -45,3 +45,8 @@
 		修改./account/views.py 中的 user_register 方法
 	4、修改注册的模板
 		修改 ./templates/account/register.html
+
+5.
+	admin管理新表
+	新注册的用户在超级管理员后台的界面中管理
+	修改 ./account/admin.py
