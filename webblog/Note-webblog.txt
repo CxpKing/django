@@ -50,3 +50,11 @@
 	admin管理新表
 	新注册的用户在超级管理员后台的界面中管理
 	修改 ./account/admin.py
+
+6.
+	Django有内置的修改密码方法，我们可以直接拿来用，只需要修改相关模板即可。
+	修改 ./account/urls.py 新增以下两行代码
+	
+	创建 ./templates/account/password_change_form.html
+
+	创建 ./templates/account/password_change_done.html
