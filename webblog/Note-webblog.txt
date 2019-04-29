@@ -58,3 +58,15 @@
 	创建 ./templates/account/password_change_form.html
 
 	创建 ./templates/account/password_change_done.html
+
+7.重置密码
+	选择重置密码—>填写注册用户时的邮箱—>向用户发送邮件—>点击右键中的连接—>进入重置密码页面—>重置密码成功
+	使用内置方法重置密码
+	在 ./account/urls.py 中新增如下代码
+	创建 ./templates/account/password_reset_form.html
+	创建 ./templates/account/password_reset_email.html
+	创建 ./templates/account/password_reset_subject.txt
+	创建 ./templates/account/password_reset_done.html
+	创建 ./templates/account/password_reset_confirm.html
+	创建 ./templates/account/password_reset_complete.html
+	在 ./lehehe/settings.py 中配置邮箱参数，在末尾增加如下代码
